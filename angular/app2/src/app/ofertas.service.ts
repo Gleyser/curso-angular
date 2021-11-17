@@ -1,7 +1,8 @@
-import { Oferta } from './shared/oferta.model';
+import { Oferta } from "./shared/oferta.model"
+
 export class OfertasService {
 
-  public ofertas: Array<Oferta> = [
+  public ofertas: Oferta[] = [
     {
       id: 1,
       categoria: "restaurante",
@@ -50,17 +51,33 @@ export class OfertasService {
         {url: "/assets/ofertas/3/img6.jpg"}
       ]
     }
-  ];
+  ]
 
-  public getOfertas(): Array<Oferta>{
-    return this.ofertas;
-  }
+    public getOfertas(): Array<Oferta> {
+       return this.ofertas
+    }
 
-  public getOfertas2(): Promise<Oferta[]> {
-    return new Promise((resolve, reject) => {
-          //algum tipo de processamento que ao finalizar chama a funcao resolve ou a funcao reject
-          console.log('sera que passou por aqui?');
-          resolve(this.ofertas)
-    })
-}
+    public getOfertas2(): Promise<Oferta[]> {
+        return new Promise((resolve, reject) => {
+              //algum tipo de processamento que ao finalizar chama a funcao resolve ou a funcao reject
+
+              // console.log('sera que passou por aqui?')
+              let deu_certo = true
+              if(deu_certo) {
+                   setTimeout(() => resolve( this.ofertas ), 3000)
+              } else {
+                   reject({ codigo_erro: 404, mensagem_erro: 'Servidor XYZ nao encontrado'})
+              }
+        })
+        .then(( ofertas: any) => {
+          // fazer alguma tratativa
+          console.log('primeiro then')
+          return ofertas
+        })
+        .then(( ofertas: any) => {
+          // fazer uma segunda tratativa
+          console.log('segundo then')
+          return ofertas
+        })
+    }
 }
