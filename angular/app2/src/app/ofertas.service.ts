@@ -1,6 +1,6 @@
-import { Oferta } from "./shared/oferta.model"
-import { HttpClient } from '@angular/common/http'
-import { Injectable } from "@angular/core"
+import { Oferta } from "./shared/oferta.model";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from "@angular/core";
 
 @Injectable()
 export class OfertasService {
@@ -15,10 +15,17 @@ export class OfertasService {
       // quando tiver a resposta em JSON, vai retornar para o home component
       return this.http.get('http://localhost:3000/ofertas')
           .toPromise()
-          .then((resposta : any) => resposta)
+          .then((resposta : any) => resposta);
 
       // retornar uma promise contendo um Oferta[]
 
+    }
+
+    public getOfertasPorCategoria(categoria: string): Promise<Oferta[]>{
+      return this.http
+        .get(`http://localhost:3000/ofertas?categoria=${categoria}`)
+        .toPromise()
+        .then((resposta : any) => resposta);
     }
 
   }
