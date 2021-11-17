@@ -18,7 +18,9 @@ export class HomeComponent implements OnInit {
     // this.ofertas = this.ofertasService.getOfertas()
     //  console.log(this.ofertas);
 
+    // Assim que o componente for criado esse trecho sera executado
    this.ofertasService.getOfertas()
+      // esse trecho pede as ofertas ao ofertasService
       .then(( ofertas: Oferta[] ) => {
         console.log('a funcao resolve foi resolvida depois de 3 segundos')
         this.ofertas = ofertas

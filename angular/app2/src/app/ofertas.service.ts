@@ -10,8 +10,9 @@ export class OfertasService {
 
 
     public getOfertas(): Promise<Oferta[]> {
-      // efetuar uma requisicao http
-      // isso retorna um observable mas agora estou tranformando com promise
+      // efetua uma requisicao http
+      // isso retorna um observable mas agora estou tranformando em promise para fins didaticos
+      // quando tiver a resposta em JSON, vai retornar para o home component
       return this.http.get('http://localhost:3000/ofertas')
           .toPromise()
           .then((resposta : any) => resposta)
