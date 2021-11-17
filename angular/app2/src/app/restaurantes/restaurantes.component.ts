@@ -21,8 +21,6 @@ export class RestaurantesComponent implements OnInit {
           this.ofertas = ofertas;
       });
   }
-
-
 }
 
 
