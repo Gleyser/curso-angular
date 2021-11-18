@@ -40,16 +40,26 @@ export class OfertasService {
         // console.log(resposta.shift());
         return resposta[0];
       });
-     }
+    }
 
-     public getComoUsarOfertaPorId(id : number): Promise<string>{
-       return this.http
-       .get(`${URL_API_OFERTAS}/como-usar?id=${id}`)
-       .toPromise()
-       .then((resposta : any) => {
-         return resposta[0].descricao;
-       });
-     }
+    public getComoUsarOfertaPorId(id : number): Promise<string>{
+      return this.http
+      .get(`${URL_API_OFERTAS}/como-usar?id=${id}`)
+      .toPromise()
+      .then((resposta : any) => {
+        return resposta[0].descricao;
+      });
+    }
+
+    public getOndeFicaOfertaPorId(id : number): Promise<string>{
+      return this.http
+      .get(`${URL_API_OFERTAS}/onde-fica?id=${id}`)
+      .toPromise()
+      .then((resposta : any) => {
+        return resposta[0].descricao;
+
+      });
+    }
 
 }
 
