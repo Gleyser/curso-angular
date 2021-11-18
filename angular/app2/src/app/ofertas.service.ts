@@ -5,6 +5,8 @@ import { Injectable } from "@angular/core";
 @Injectable()
 export class OfertasService {
 
+  private url_api = 'http://localhost:3000/ofertas';
+
   constructor(private http: HttpClient) {}
 
 
@@ -23,14 +25,14 @@ export class OfertasService {
 
     public getOfertasPorCategoria(categoria: string): Promise<Oferta[]>{
       return this.http
-        .get(`http://localhost:3000/ofertas?categoria=${categoria}`)
+        .get(`${this.url_api}?categoria=${categoria}`)
         .toPromise()
         .then((resposta : any) => resposta);
     }
 
     public getOfertaPorId(id : number): Promise<Oferta>{
       return this.http
-      .get(`http://localhost:3000/ofertas?id=${id}`)
+      .get(`${this.url_api}?id=${id}`)
       .toPromise()
       .then((resposta : any) => {
         // shift captura o primeiro elemento e move os demais para frente
