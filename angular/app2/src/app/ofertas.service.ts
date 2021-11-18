@@ -1,11 +1,12 @@
 import { Oferta } from "./shared/oferta.model";
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
+import {URL_API_OFERTAS} from "./app.api";
 
 @Injectable()
 export class OfertasService {
 
-  private url_api = 'http://localhost:3000/ofertas';
+
 
   constructor(private http: HttpClient) {}
 
@@ -15,7 +16,7 @@ export class OfertasService {
       // efetua uma requisicao http
       // isso retorna um observable mas agora estou tranformando em promise para fins didaticos
       // quando tiver a resposta em JSON, vai retornar para o home component
-      return this.http.get('http://localhost:3000/ofertas')
+      return this.http.get(URL_API_OFERTAS)
           .toPromise()
           .then((resposta : any) => resposta);
 
@@ -25,14 +26,14 @@ export class OfertasService {
 
     public getOfertasPorCategoria(categoria: string): Promise<Oferta[]>{
       return this.http
-        .get(`${this.url_api}?categoria=${categoria}`)
+        .get(`${URL_API_OFERTAS}?categoria=${categoria}`)
         .toPromise()
         .then((resposta : any) => resposta);
     }
 
     public getOfertaPorId(id : number): Promise<Oferta>{
       return this.http
-      .get(`${this.url_api}?id=${id}`)
+      .get(`${URL_API_OFERTAS}?id=${id}`)
       .toPromise()
       .then((resposta : any) => {
         // shift captura o primeiro elemento e move os demais para frente
