@@ -16,7 +16,7 @@ export class OfertasService {
       // efetua uma requisicao http
       // isso retorna um observable mas agora estou tranformando em promise para fins didaticos
       // quando tiver a resposta em JSON, vai retornar para o home component
-      return this.http.get(URL_API_OFERTAS)
+      return this.http.get(`${URL_API_OFERTAS}/ofertas`)
           .toPromise()
           .then((resposta : any) => resposta);
 
@@ -26,14 +26,14 @@ export class OfertasService {
 
     public getOfertasPorCategoria(categoria: string): Promise<Oferta[]>{
       return this.http
-        .get(`${URL_API_OFERTAS}?categoria=${categoria}`)
+        .get(`${URL_API_OFERTAS}/ofertas?categoria=${categoria}`)
         .toPromise()
         .then((resposta : any) => resposta);
     }
 
     public getOfertaPorId(id : number): Promise<Oferta>{
       return this.http
-      .get(`${URL_API_OFERTAS}?id=${id}`)
+      .get(`${URL_API_OFERTAS}/ofertas?id=${id}`)
       .toPromise()
       .then((resposta : any) => {
         // shift captura o primeiro elemento e move os demais para frente
@@ -41,4 +41,16 @@ export class OfertasService {
         return resposta[0];
       });
      }
+
+     public getComoUsarOfertaPorId(id : number): Promise<string>{
+       return this.http
+       .get(`${URL_API_OFERTAS}/como-usar?id=${id}`)
+       .toPromise()
+       .then((resposta : any) => {
+         return resposta[0].descricao;
+       });
+     }
+
 }
+
+
