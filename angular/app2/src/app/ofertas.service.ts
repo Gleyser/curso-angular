@@ -2,6 +2,7 @@ import { Oferta } from "./shared/oferta.model";
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
 import {URL_API_OFERTAS} from "./app.api";
+import { map, Observable, retry } from "rxjs";
 
 @Injectable()
 export class OfertasService {
@@ -59,6 +60,14 @@ export class OfertasService {
         return resposta[0].descricao;
 
       });
+    }
+
+    // Nosso observavel que vai fazer a busca e inserir um evento
+    public pesquisaOferta(termo : string): Observable<Oferta[]> {
+      return this.http.get<Oferta[]>(`${URL_API_OFERTAS}/ofertas?descricao_oferta_like=${termo}`)
+      .pipe(retry(10))
+      .pipe(map(response => response));
+      //isso eh a mesma coisa que .pipe(map(response => response.json));
     }
 
 }
