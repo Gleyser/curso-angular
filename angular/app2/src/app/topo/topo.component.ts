@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable, Subject, switchMap } from 'rxjs';
+import { debounceTime, Observable, Subject, switchMap } from 'rxjs';
 import { OfertasService } from '../ofertas.service';
 import { Oferta } from '../shared/oferta.model';
 
@@ -19,7 +19,8 @@ export class TopoComponent implements OnInit {
   //switchMap é chamado sempre que houver um next
   ngOnInit(): void {
     this.ofertas = this.SubjectPesquisa //retorno ao termino Oferta[]
-    .pipe(switchMap((termo : string) => {
+    //executa a acao do switchMap após 1000 milisegundos, ou seja, 1 segundo
+    .pipe(debounceTime(1000), switchMap((termo : string) => {
       return this.ofertasService.pesquisaOferta(termo);
 
     }))
