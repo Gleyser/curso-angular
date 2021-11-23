@@ -1,30 +1,29 @@
-import { OfertasService } from 'src/app/ofertas.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
+import { OfertasService } from 'src/app/ofertas.service';
 
 @Component({
   selector: 'app-como-usar',
   templateUrl: './como-usar.component.html',
   styleUrls: ['./como-usar.component.css'],
-  providers: [OfertasService]
+  providers: [ OfertasService ]
 })
 export class ComoUsarComponent implements OnInit {
 
-  public comoUsar : string = '';
+  public comoUsar: string = ''
 
   constructor(
-    private route: ActivatedRoute,
-    private ofertasService: OfertasService
+        private route: ActivatedRoute,
+        private ofertasService: OfertasService
     ) { }
 
   ngOnInit(): void {
-    //console.log(this.route.parent?.snapshot.params['id']);
 
-    this.ofertasService.getComoUsarOfertaPorId(this.route.parent?.snapshot.params['id'])
+    this.route.parent?.params.subscribe((parametros: Params) => {
+      this.ofertasService.getComoUsarOfertaPorId(parametros['id'])
         .then((descricao: string) => {
-          this.comoUsar = descricao;
-          //console.log(this.comoUsar);
+          this.comoUsar = descricao
         })
-
-      }
+    })
   }
+}

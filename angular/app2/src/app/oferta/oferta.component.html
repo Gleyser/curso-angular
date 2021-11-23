@@ -1,16 +1,25 @@
 <div class="container">
+
     <div class="oferta" *ngIf="oferta !== undefined">
+
+        <!-- <div class="row">
+      <div class="col">
+        <a [routerLink]="['/oferta', 1]">Oferta 1  </a>
+        <a [routerLink]="['/oferta', 3]">Oferta 3  </a>
+        <a [routerLink]="['/oferta', 6]">Oferta 6  </a>
+      </div>
+    </div> -->
 
         <div class="row">
             <div class="col">
-                <h4>{{oferta.descricao_oferta}}</h4>
+                <h4>{{ oferta.descricao_oferta }}</h4>
             </div>
         </div>
 
         <div class="row">
             <div class="col-md-6">
                 <div class="img_capa">
-                    <img [src]="oferta.imagens[0].url" class="img-fluid" />
+                    <img [src]="oferta.imagens[0].url" />
                 </div>
 
                 <div class="thumbnails">
@@ -28,7 +37,7 @@
 
                 <div class="row">
                     <div class="col text-center">
-                        <h1> {{oferta.valor | currency: 'BRL'}}</h1>
+                        <h1>{{oferta.valor | currency:'BRL'}}</h1>
                     </div>
                 </div>
 
@@ -48,19 +57,15 @@
         <div class="col">
             <ul class="nav nav-tabs">
                 <li class="nav-item">
-                    <a class="nav-link active" routerLinkActive="active" data-toggle=" tab " routerLink="como-usar" role="tab " aria-expanded="true">Como usar</a>
+                    <a class="nav-link active" routerLinkActive="active" routerLink="como-usar" data-toggle="tab" role="tab" aria-expanded="true">Como usar</a>
                 </li>
-
-                <li class="nav-item ">
-                    <a class="nav-link " routerLinkActive="active" data-toggle="tab " routerLink="onde-fica" role="tab " aria-expanded="true">Onde fica?</a>
+                <li class="nav-item">
+                    <a class="nav-link" routerLinkActive="active" routerLink="onde-fica" data-toggle="tab" role="tab">Onde fica?</a>
                 </li>
             </ul>
-            <div class="tab-content ">
+            <div class="tab-content">
                 <router-outlet></router-outlet>
             </div>
         </div>
     </div>
-
-
-
 </div>
