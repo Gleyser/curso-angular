@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http'
 
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import { OndeFicaComponent } from './oferta/onde-fica/onde-fica.component';
 //pipe
 import { DescricaoReduzida } from './util/descricao-reduzida.pipe';
 import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
+import { OrdemCompraSucessoComponent } from './ordem-compra-sucesso/ordem-compra-sucesso.component';
 
 @NgModule({
   declarations: [
@@ -32,13 +34,15 @@ import { OrdemCompraComponent } from './ordem-compra/ordem-compra.component';
     ComoUsarComponent,
     OndeFicaComponent,
     DescricaoReduzida,
-    OrdemCompraComponent
+    OrdemCompraComponent,
+    OrdemCompraSucessoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
