@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http'
 
 import { RouterModule } from '@angular/router';
 import { ROUTES } from './app.routes';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -42,7 +42,8 @@ import { OrdemCompraSucessoComponent } from './ordem-compra-sucesso/ordem-compra
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot(ROUTES),
-    FormsModule
+    //FormsModule
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
